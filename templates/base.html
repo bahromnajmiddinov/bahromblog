@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BahromBlog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <style>
+        .acco
+            border: 1px solid black;
+            border-color: red;
+            border-collapse: collapse;
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Bahrom Blog</a></h1>
+        <h2><a href="{% url 'post_new' %}" style="text-decoration: none; color: red;">Yangi post qo`shish</a></h2>
+    </header><hr><br>
+    {% if user.is_authenticated %}
+        <p>Xush kelibsiz!, {{ user.username }}</p>
+        <p><a href="{% url 'logout' %}">Chiqish</a></p>
+    {% else %}
+        <p>
+            <a href="{% url 'login' %}" class="acco">Saytga kirish</a>
+            <a href="{% url 'signup' %}" class="acco">Ro`yxatdan o`tish</a>
+        </p>
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
